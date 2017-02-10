@@ -1,6 +1,8 @@
 SmartyTabs [![Codepen](https://travis-ci.org/fredrb/codepen-downloader.svg?branch=master)] (https://codepen.io/Alebex/pen/EZpexa)
 ==========
-#### Demo [Codepen] (https://codepen.io/Alebex/pen/EZpexa)
+### Demo [Codepen] (https://codepen.io/Alebex/pen/EZpexa)
+
+---------------------------------------------------------
 
 #### HTML Layout
 ```html
