@@ -1,4 +1,4 @@
-SmartyTabs
+SmartyTabs [![Build Status](https://travis-ci.org/fredrb/codepen-downloader.svg?branch=master)](https://travis-ci.org/fredrb/codepen-downloader)
 ==========
 
 
