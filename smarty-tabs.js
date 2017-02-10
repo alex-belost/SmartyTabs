@@ -1,4 +1,4 @@
-const SmartyTabs = (() => {
+export default (() => {
     function SmartyTabs( initClass, config ) {
         if( !(this instanceof SmartyTabs) ) return new SmartyTabs( initClass, config );
         if( initClass ) {
@@ -71,7 +71,7 @@ const SmartyTabs = (() => {
         }
     }
 
-// prototype
+    // prototype
     SmartyTabs.prototype = {
         _startIndex      : 0,
         _controllerSlide : true,
@@ -115,5 +115,3 @@ const SmartyTabs = (() => {
     };
     return SmartyTabs;
 })();
-
-export default SmartyTabs;
