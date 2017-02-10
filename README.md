@@ -34,6 +34,8 @@ SmartyTabs [![Codepen](https://travis-ci.org/fredrb/codepen-downloader.svg?branc
     })
 ```
 
+-------------------------------------------------------------------
+
 ## Parameters
 
 Parameter                  | Type      | Default
