@@ -1,4 +1,4 @@
-SmartyTabs [![Codepen](https://travis-ci.org/fredrb/codepen-downloader.svg?branch=master)](https://codepen.io/Alebex/pen/EZpexa)
+SmartyTabs [![Codepen](https://travis-ci.org/fredrb/codepen-downloader.svg?branch=master) example](https://codepen.io/Alebex/pen/EZpexa) codepen
 ==========
 
 
