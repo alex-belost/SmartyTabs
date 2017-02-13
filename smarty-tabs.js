@@ -59,8 +59,8 @@ class SmartyTabs {
     
     /**
      *
-     * @param single [class, id, ... ]
-     * @param collection [true - if need element collection]
+     * @param single {string} class, id, ...
+     * @param collection {boolean} if need element collection
      * @returns {querySelector}
      * @private
      */
@@ -122,7 +122,7 @@ class SmartyTabs {
     
     /**
      * navigation positioning
-     * @param el [javascript element]
+     * @param el {object} javascript element
      * @private
      */
     _tabPosition( el ) {
@@ -176,7 +176,7 @@ class SmartyTabs {
     
     /**
      * get active tab item index
-     * @param el [javascript element]
+     * @param el {object} javascript element
      * @returns {Number|number}
      * @private
      */
@@ -189,8 +189,8 @@ class SmartyTabs {
 
 /**
  *
- * @param init [class, id, ... ]
- * @param parameters [user config]
+ * @param init {string} class, id, ...
+ * @param parameters {object} user config
  * @returns {SmartyTabs}
  */
 export default function( init, parameters ) {
