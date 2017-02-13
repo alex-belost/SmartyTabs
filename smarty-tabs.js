@@ -1,4 +1,11 @@
 class SmartyTabs {
+    /**
+     *
+     * @param init {string} document.querySelector() initial class name
+     * @param userConfig {object} user tab config
+     * @class SmartyTabs
+     * @constructor
+     */
     constructor( init, userConfig ) {
         
         this.config = userConfig || {};
@@ -58,10 +65,11 @@ class SmartyTabs {
     }
     
     /**
+     * get element
      *
      * @param single {string} class, id, ...
      * @param collection {boolean} if need element collection
-     * @returns {querySelector}
+     * @returns {object} document.querySelector
      * @private
      */
     static _el( single, collection ) {
@@ -70,6 +78,8 @@ class SmartyTabs {
     
     /**
      * event resize
+     * check current window screen and max screen
+     *
      * @private
      */
     _resizeWindow() {
@@ -79,7 +89,8 @@ class SmartyTabs {
     }
     
     /**
-     * main controller
+     * main controller settings
+     *
      * @private
      */
     _controller() {
@@ -113,6 +124,7 @@ class SmartyTabs {
     
     /**
      * check init class
+     *
      * @returns {boolean}
      * @private
      */
@@ -122,7 +134,9 @@ class SmartyTabs {
     
     /**
      * navigation positioning
-     * @param el {object} javascript element
+     * set tab position on center
+     *
+     * @param el {object} document.querySelector()
      * @private
      */
     _tabPosition( el ) {
@@ -133,6 +147,7 @@ class SmartyTabs {
     
     /**
      * verification of the conditions for positioning
+     *
      * @returns {boolean}
      * @private
      */
@@ -143,6 +158,7 @@ class SmartyTabs {
     
     /**
      * removal of active classes with elements
+     *
      * @private
      */
     _removeActiveClass() {
@@ -165,6 +181,7 @@ class SmartyTabs {
     
     /**
      * set start index for element
+     *
      * @private
      */
     _startTab() {
@@ -176,8 +193,9 @@ class SmartyTabs {
     
     /**
      * get active tab item index
-     * @param el {object} javascript element
-     * @returns {Number|number}
+     *
+     * @param el {object} document.querySelector() javascript element
+     * @returns {number}
      * @private
      */
     _targetTabIndex( el ) {
@@ -188,10 +206,9 @@ class SmartyTabs {
 }
 
 /**
- *
  * @param init {string} class, id, ...
  * @param parameters {object} user config
- * @returns {SmartyTabs}
+ * @returns {object} new tab object
  */
 export default function( init, parameters ) {
     return new SmartyTabs( init, parameters );
