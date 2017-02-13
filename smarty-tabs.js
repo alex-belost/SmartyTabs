@@ -1,126 +1,59 @@
-class SmatryTabs {
+class SmartyTabs {
     constructor( init, userConfig ) {
+        
         this.config = userConfig || {};
         this.initClass = init;
         
-        /**
-         * init first tab on load
-         */
-        this._startTab();
-        
-        /**
-         * resize event
-         */
-        window.addEventListener( 'resize', () => {
-            if( this._checkWidth() ) this._tabPosition();
-        } );
-        /**
-         * click event
-         */
-        if( SmatryTabs._el( this._navList() ) ) {
-            SmatryTabs._el( this._navList() ).addEventListener( 'click', ( event ) => {
-                event.preventDefault();
-                let target = event.target;
-                
-                while( target.tagName !== 'UL' ) {
-                    if( target.tagName === 'LI' ) break;
-                    target = target.parentNode;
-                }
-                
-                if( !this._checkWidth() ) this._tabPosition( target );
-                
-                this._removeActiveClass();
-                
-                /**
-                 * add active class for tab item
-                 */
-                let targetIndex = this._targetTabIndex( target );
-                
-                /**
-                 * add active tabs for content item
-                 */
-                if( targetIndex + 1 ) {
-                    SmatryTabs._el( this._contentItems(), true )[ targetIndex ]
-                        .classList.add( this._activeClass().content );
-                    target.classList.add( this._activeClass().nav );
-                }
-                
-            } );
-        }
+        this._initTab();
     }
     
     /**
-     * starting at boot element
-     * @returns {number}
+     * init tab
      * @private
      */
-    _startIndex() { return this.config.startIndex || 0 }
+    _initTab() {
+        if( this._checkInit() ) {
+            this._startTab();
+            this._resizeWindow();
+            this._controller();
+        } else console.error( 'Check the input class init or transmitted settings' );
+    }
     
     /**
-     * centering element when clicked
-     * @returns {boolean}
+     * default config
+     * @returns {{startIndex: number, tabSlide: boolean, maxScreen: number, container: string, navWrapper: string,
+     *     navList: string, navItems: string, contentWrapper: string, contentItems: string, activeClass: {nav:
+     *     (string), content: (string)}}}
      * @private
      */
-    _tabSlide() { return this.config.tabSlide || true }
-    
-    /**
-     * with resolution of of the tab will be centering
-     * @returns {number}
-     * @private
-     */
-    _maxScreen() { return this.config.maxScreen || 650 }
-    
-    /**
-     * container class, id ...
-     * @returns {string}
-     * @private
-     */
-    _container() { return this.initClass + ( this.config.container || '.smarty-tabs' ) }
-    
-    /**
-     * navigation wrapper class, id ...
-     * @returns {string}
-     * @private
-     */
-    _navWrapper() { return `${this.initClass}` + ( this.config.navWrapper || '.smarty-controller' ) }
-    
-    /**
-     * navigation tab list(ul) class, id ...
-     * @returns {string}
-     * @private
-     */
-    _navList() { return `${this.initClass} ` + ( this.config.navList || '.smarty-controller__list') }
-    
-    /**
-     * navigation tab items(li) class, id ...
-     * @returns {string}
-     * @private
-     */
-    _navItems() { return `${this.initClass} ` + ( this.config.navItems || '.smarty-controller__item') }
-    
-    /**
-     * content wrapper class, id ...
-     * @returns {string}
-     * @private
-     */
-    _contentWrapper() { return `${this.initClass} ` + ( this.config.contentWrapper || '.smarty-content') }
-    
-    /**
-     * content items class, id ...
-     * @returns {string}
-     * @private
-     */
-    _contentItems() { return `${this.initClass} ` + ( this.config.contentItems || '.smarty-content__item' ) }
-    
-    /**
-     * active class for items
-     * @returns {{nav: (string), content: (string)}}
-     * @private
-     */
-    _activeClass() {
-        return {
+    _config() {
+        const startIndex = 0;
+        const tabSlide = true;
+        const maxScreen = 650;
+        const container = '.smarty-tabs';
+        const navWrapper = '.smarty-controller';
+        const navList = '.smarty-controller__list';
+        const navItems = '.smarty-controller__item';
+        const contentWrapper = '.smarty-content';
+        const contentItems = '.smarty-content__item';
+        const activeClass = {
             nav    : this.config.activeController || 'smarty-controller__item--active',
             content: this.config.activeContent || 'smarty-content__item--active'
+        };
+        return {
+            startIndex    : this.config.startIndex || startIndex,
+            tabSlide      : this.config.tabSlide || tabSlide,
+            maxScreen     : this.config.maxScreen || maxScreen,
+            container     : this.initClass + ( this.config.container || container ),
+            navWrapper    : `${this.initClass}${( this.config.navWrapper || navWrapper )}`,
+            navList       : `${this.initClass} ${( this.config.navList || navList )}`,
+            navItems      : `${this.initClass} ${( this.config.navItems || navItems)}`,
+            contentWrapper: `${this.initClass} ${( this.config.contentWrapper || contentWrapper )}`,
+            contentItems  : `${this.initClass} ${( this.config.contentItems || contentItems )}`,
+            activeClass   : {
+                nav    : this.config.activeController || activeClass.nav,
+                content: this.config.activeContent || activeClass.content
+            }
         }
     }
     
@@ -136,12 +69,64 @@ class SmatryTabs {
     }
     
     /**
+     * event resize
+     * @private
+     */
+    _resizeWindow() {
+        window.addEventListener( 'resize', () => {
+            if( this._checkScreen() ) this._tabPosition();
+        } );
+    }
+    
+    /**
+     * main controller
+     * @private
+     */
+    _controller() {
+        const useTab = ( event ) => {
+            event.preventDefault();
+            let target = event.target;
+            
+            while( target.tagName !== 'UL' ) {
+                if( target.tagName === 'LI' ) break;
+                target = target.parentNode;
+            }
+            
+            if( !this._checkScreen() ) this._tabPosition( target );
+            
+            this._removeActiveClass();
+            
+            // add for current item active class
+            let targetIndex = this._targetTabIndex( target );
+            
+            if( targetIndex + 1 ) {
+                SmartyTabs._el( this._config().contentItems, true )[ targetIndex ]
+                    .classList.add( this._config().activeClass.content );
+                target.classList.add( this._config().activeClass.nav );
+            }
+            
+        };
+        if( SmartyTabs._el( this._config().navList ) ) {
+            SmartyTabs._el( this._config().navList ).addEventListener( 'click', useTab );
+        }
+    }
+    
+    /**
+     * check init class
+     * @returns {boolean}
+     * @private
+     */
+    _checkInit() {
+        return typeof(this.initClass) === 'string' && this.initClass !== undefined;
+    }
+    
+    /**
      * navigation positioning
      * @param el [javascript element]
      * @private
      */
     _tabPosition( el ) {
-        let list = SmatryTabs._el( this._navList() );
+        let list = SmartyTabs._el( this._config().navList );
         let positionX = el ? ( list.offsetWidth / 2 - el.offsetWidth / 2) - el.offsetLeft : 0;
         list.style.transform = `translate(${positionX}px)`;
     }
@@ -151,9 +136,9 @@ class SmatryTabs {
      * @returns {boolean}
      * @private
      */
-    _checkWidth() {
-        return (this._tabSlide() && this._maxScreen() <= window.innerWidth) ||
-            ( SmatryTabs._el( this._navList() ).offsetWidth > window.innerWidth && this._tabSlide())
+    _checkScreen() {
+        return (this._config().tabSlide && this._config().maxScreen <= window.innerWidth) ||
+            ( SmartyTabs._el( this._config().navList ).offsetWidth > window.innerWidth && this._config().tabSlide )
     }
     
     /**
@@ -163,19 +148,19 @@ class SmatryTabs {
     _removeActiveClass() {
         let itemsCollection = [
             {
-                items : SmatryTabs._el( this._navItems(), true ),
-                active: this._activeClass().nav
+                items : SmartyTabs._el( this._config().navItems, true ),
+                active: this._config().activeClass.nav
             },
             {
-                items : SmatryTabs._el( this._contentItems(), true ),
-                active: this._activeClass().content
+                items : SmartyTabs._el( this._config().contentItems, true ),
+                active: this._config().activeClass.content
             }
         ];
-        itemsCollection.forEach( ( list ) => {
-            list.items.forEach( ( item ) => {
-                item.classList.remove( list.active );
-            } )
-        } )
+        for( let i = itemsCollection.length - 1; i >= 0; i-- ) {
+            for( let j = itemsCollection[ i ].items.length - 1; j >= 0; j-- ) {
+                itemsCollection[ i ].items[ j ].classList.remove( itemsCollection[ i ].active );
+            }
+        }
     }
     
     /**
@@ -183,10 +168,10 @@ class SmatryTabs {
      * @private
      */
     _startTab() {
-        SmatryTabs._el( this._navItems(), true )[ this._startIndex() ]
-            .classList.add( this._activeClass().nav );
-        SmatryTabs._el( this._contentItems(), true )[ this._startIndex() ]
-            .classList.add( this._activeClass().content );
+        SmartyTabs._el( this._config().navItems, true )[ this._config().startIndex ]
+            .classList.add( this._config().activeClass.nav );
+        SmartyTabs._el( this._config().contentItems, true )[ this._config().startIndex ]
+            .classList.add( this._config().activeClass.content );
     }
     
     /**
@@ -196,17 +181,18 @@ class SmatryTabs {
      * @private
      */
     _targetTabIndex( el ) {
-        let navList = Array.prototype.slice.call( SmatryTabs._el( this._navItems(), true ) );
+        let navList = Array.prototype.slice.call( SmartyTabs._el( this._config().navItems, true ) );
         return navList.indexOf( el );
     }
     
 }
+
 /**
  *
  * @param init [class, id, ... ]
  * @param parameters [user config]
- * @returns {SmatryTabs}
+ * @returns {SmartyTabs}
  */
 export default function( init, parameters ) {
-    return new SmatryTabs( init, parameters );
+    return new SmartyTabs( init, parameters );
 }
