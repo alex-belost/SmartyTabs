@@ -16,6 +16,7 @@ class SmartyTabs {
     
     /**
      * init tab
+     *
      * @private
      */
     _initTab() {
@@ -28,6 +29,7 @@ class SmartyTabs {
     
     /**
      * default config
+     *
      * @returns {{startIndex: number, tabSlide: boolean, maxScreen: number, container: string, navWrapper: string,
      *     navList: string, navItems: string, contentWrapper: string, contentItems: string, activeClass: {nav:
      *     (string), content: (string)}}}
