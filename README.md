@@ -1,6 +1,8 @@
 SmartyTabs [![Codepen](https://travis-ci.org/fredrb/codepen-downloader.svg?branch=master)] (https://codepen.io/Alebex/pen/EZpexa)
 ==========
+### Demo [Codepen] (https://codepen.io/Alebex/pen/EZpexa)
 
+---------------------------------------------------------
 
 #### HTML Layout
 ```html
@@ -32,6 +34,8 @@ SmartyTabs [![Codepen](https://travis-ci.org/fredrb/codepen-downloader.svg?branc
     })
 ```
 
+-------------------------------------------------------------------
+
 ## Parameters
 
 Parameter                  | Type      | Default
@@ -39,17 +43,17 @@ Parameter                  | Type      | Default
 _**classes**_              |           |               
                            |           |                
 container                  | string    | '.smarty-tabs'
-navContainer               | string    | '.smarty-controller'
+navWrapper                 | string    | '.smarty-controller'
 navList                    | string    | '.smarty-controller__list'
 navItems                   | string    | '.smarty-controller__item'
-contentList                | string    | '.smarty-content'
+contentWrapper             | string    | '.smarty-content'
 contentItems               | string    | '.smarty-content__item'
 activeClass.controller     | string    | 'smarty-controller__item--active'
 activeClass.content        | string    | 'smarty-content__item--active'
                            |           |                
 _**response**_             |           |               
                            |           |                
-controllerSlide            | boolean   | false
+tabSlide                   | boolean   | false
 maxScreen                  | number    | 650
                            |           |                
 _**other**_                |           |               
