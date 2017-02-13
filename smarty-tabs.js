@@ -37,8 +37,8 @@ class SmartyTabs {
         const contentWrapper = '.smarty-content';
         const contentItems = '.smarty-content__item';
         const activeClass = {
-            nav    : this.config.activeController || 'smarty-controller__item--active',
-            content: this.config.activeContent || 'smarty-content__item--active'
+            nav    : 'smarty-controller__item--active',
+            content: 'smarty-content__item--active'
         };
         return {
             startIndex    : this.config.startIndex || startIndex,
