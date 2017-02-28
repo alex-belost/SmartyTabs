@@ -7,8 +7,8 @@ const SmartyTabs = (() => {
          * @constructor
          */
         constructor( init, userConfig ) {
-            this.config = userConfig || {};
             this.initClass = init;
+            this.config = userConfig || {};
             
             if( $._checkClass( init ) ) this._initTab();
         }
@@ -61,11 +61,11 @@ const SmartyTabs = (() => {
          * @private
          */
         _checkScreen() {
-            const tabMove = this._config().tabSlide;
-            const screenMove = this._config().maxScreen <= window.innerWidth;
-            const sizeMove = $._el( this._config().navList ).offsetWidth > window.innerWidth;
+            const { tabSlide, maxScreen, navList } = this._config();
+            const listWidth = $._el( navList ).offsetWidth;
             
-            return (tabMove && screenMove) || (tabMove && sizeMove)
+            return (tabSlide && maxScreen <= window.innerWidth) ||
+                (tabSlide && listWidth > window.innerWidth)
         }
         
         /**
@@ -89,18 +89,22 @@ const SmartyTabs = (() => {
                 nav    : `${navWrapper}__item--active`.replace( /\./, '' ),
                 content: `${contentWrapper}__item--active`.replace( /\./, '' )
             };
+            
+            const init = this.initClass;
+            const userConfig = this.config;
+            
             return {
-                startIndex    : this.config.startIndex || startIndex,
-                tabSlide      : this.config.tabSlide || tabSlide,
-                maxScreen     : this.config.maxScreen || maxScreen,
-                navWrapper    : `${this.initClass} ${( this.config.navWrapper || navWrapper )}`,
-                navList       : `${this.initClass} ${( this.config.navList || navList )}`,
-                navItems      : `${this.initClass} ${( this.config.navItems || navItems)}`,
-                contentWrapper: `${this.initClass} ${( this.config.contentWrapper || contentWrapper )}`,
-                contentItems  : `${this.initClass} ${( this.config.contentItems || contentItems )}`,
+                startIndex    : userConfig.startIndex || startIndex,
+                tabSlide      : userConfig.tabSlide || tabSlide,
+                maxScreen     : userConfig.maxScreen || maxScreen,
+                navWrapper    : `${init} ${( userConfig.navWrapper || navWrapper )}`,
+                navList       : `${init} ${( userConfig.navList || navList )}`,
+                navItems      : `${init} ${( userConfig.navItems || navItems)}`,
+                contentWrapper: `${init} ${( userConfig.contentWrapper || contentWrapper )}`,
+                contentItems  : `${init} ${( userConfig.contentItems || contentItems )}`,
                 activeClass   : {
-                    nav    : this.config.activeController || activeClass.nav,
-                    content: this.config.activeContent || activeClass.content
+                    nav    : userConfig.activeController || activeClass.nav,
+                    content: userConfig.activeContent || activeClass.content
                 }
             }
         }
@@ -138,11 +142,12 @@ const SmartyTabs = (() => {
                 
                 // add for current item active class
                 let targetIndex = this._targetTabIndex( target );
+                const { contentItems, activeClass } = this._config();
                 
                 if( targetIndex + 1 ) {
-                    $._el( this._config().contentItems, true )[ targetIndex ]
-                        .classList.add( this._config().activeClass.content );
-                    target.classList.add( this._config().activeClass.nav );
+                    $._el( contentItems, true )[ targetIndex ].classList.add( activeClass.content );
+                    
+                    target.classList.add( activeClass.nav );
                 }
                 
             };
@@ -160,6 +165,7 @@ const SmartyTabs = (() => {
             let list = $._el( this._config().navList );
             let positionX = el ? (list.offsetWidth / 2 - el.offsetWidth / 2) - el.offsetLeft : 0;
             const offsetRight = list.scrollWidth - document.body.clientWidth;
+            
             if( -positionX > offsetRight ) {
                 list.style.transform = `translate(${ -offsetRight }px)`;
             } else {
@@ -175,13 +181,18 @@ const SmartyTabs = (() => {
          * @private
          */
         _removeActiveClass() {
-            let itemsCollection = [ {
-                items : $._el( this._config().navItems, true ),
-                active: this._config().activeClass.nav
-            }, {
-                items : $._el( this._config().contentItems, true ),
-                active: this._config().activeClass.content
-            } ];
+            const { navItems, contentItems, activeClass } = this._config();
+            
+            let itemsCollection = [
+                {
+                    items : $._el( navItems, true ),
+                    active: activeClass.nav
+                },
+                {
+                    items : $._el( contentItems, true ),
+                    active: activeClass.content
+                }
+            ];
             for( let i = itemsCollection.length - 1; i >= 0; i-- ) {
                 for( let j = itemsCollection[ i ].items.length - 1; j >= 0; j-- ) {
                     itemsCollection[ i ].items[ j ].classList.remove( itemsCollection[ i ].active );
@@ -195,10 +206,10 @@ const SmartyTabs = (() => {
          * @private
          */
         _startTab() {
-            $._el( this._config().navItems, true )[ this._config().startIndex ]
-                .classList.add( this._config().activeClass.nav );
-            $._el( this._config().contentItems, true )[ this._config().startIndex ]
-                .classList.add( this._config().activeClass.content );
+            const { navItems, contentItems, activeClass, startIndex } = this._config();
+            
+            $._el( navItems, true )[ startIndex ].classList.add( activeClass.nav );
+            $._el( contentItems, true )[ startIndex ].classList.add( activeClass.content );
         }
         
         /**
