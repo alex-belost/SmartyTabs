@@ -93,7 +93,7 @@ const SmartyTabs = (() => {
                 startIndex    : this.config.startIndex || startIndex,
                 tabSlide      : this.config.tabSlide || tabSlide,
                 maxScreen     : this.config.maxScreen || maxScreen,
-                navWrapper    : `${this.initClass}${( this.config.navWrapper || navWrapper )}`,
+                navWrapper    : `${this.initClass} ${( this.config.navWrapper || navWrapper )}`,
                 navList       : `${this.initClass} ${( this.config.navList || navList )}`,
                 navItems      : `${this.initClass} ${( this.config.navItems || navItems)}`,
                 contentWrapper: `${this.initClass} ${( this.config.contentWrapper || contentWrapper )}`,
