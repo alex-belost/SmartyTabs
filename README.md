@@ -42,7 +42,6 @@ Parameter                  | Type      | Default
 ---------------------------|-----------|----------------
 _**classes**_              |           |               
                            |           |                
-container                  | string    | '.smarty-tabs'
 navWrapper                 | string    | '.smarty-controller'
 navList                    | string    | '.smarty-controller__list'
 navItems                   | string    | '.smarty-controller__item'
