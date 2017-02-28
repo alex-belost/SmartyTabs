@@ -1,0 +1,23 @@
+{
+  "name": "smarty-tabs",
+  "version": "0.1.0",
+  "description": "a simple plug-in for tabs written in ES6",
+  "main": "smarty-tabs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alebex/SmartyTabs.git"
+  },
+  "keywords": [
+    "SmartyTabs",
+    "smarty-tabs"
+  ],
+  "author": "Alebex",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alebex/SmartyTabs/issues"
+  },
+  "homepage": "https://github.com/Alebex/SmartyTabs#readme"
+}
