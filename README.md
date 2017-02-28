@@ -1,16 +1,16 @@
-SmartyTabs [![Codepen](https://travis-ci.org/fredrb/codepen-downloader.svg?branch=master)] (https://codepen.io/Alebex/pen/EZpexa)
+SmartyTabs
 ==========
-### Demo [Codepen] (https://codepen.io/Alebex/pen/EZpexa)
+### Demo https://codepen.io/Alebex/pen/EZpexa
 
 ---------------------------------------------------------
 
 #### HTML Layout
 ```html
     <!-- Set init class name -->
-    <div class="initClass smarty-tabs">
+    <div class="init-class">
     
         <!-- Navigation container -->
-        <div class="smarty-tabs__item smarty-controller">
+        <div class="smarty-controller">
             <ul class="smarty-controller__list">
                 <li class="smarty-controller__item"> tab 1 </li>
                 <li class="smarty-controller__item"> tab 2 </li>
@@ -18,7 +18,7 @@ SmartyTabs [![Codepen](https://travis-ci.org/fredrb/codepen-downloader.svg?branc
         </div>
         
         <!-- Navigation container -->
-        <div class="smarty-tab__item smarty-content">
+        <div class="smarty-content">
             <div class="smarty-content__item"> content block 1 </div>
             <div class="smarty-content__item"> content block 2 </div>
         </div>
