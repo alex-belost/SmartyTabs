@@ -7,7 +7,6 @@ const SmartyTabs = (() => {
          * @constructor
          */
         constructor( init, userConfig ) {
-            
             this.config = userConfig || {};
             this.initClass = init;
             
@@ -50,11 +49,23 @@ const SmartyTabs = (() => {
          * @private
          */
         _initTab() {
-            if( this._checkInit() ) {
-                this._startTab();
-                this._resizeWindow();
-                this._controller();
-            } else console.error( 'Check the input class init or transmitted settings' );
+            this._startTab();
+            this._resizeWindow();
+            this._controller();
+        }
+        
+        /**
+         * verification of the conditions for positioning
+         *
+         * @returns {boolean}
+         * @private
+         */
+        _checkScreen() {
+            const tabMove = this._config().tabSlide;
+            const screenMove = this._config().maxScreen <= window.innerWidth;
+            const sizeMove = $._el( this._config().navList ).offsetWidth > window.innerWidth;
+            
+            return (tabMove && screenMove) || (tabMove && sizeMove)
         }
         
         /**
@@ -69,7 +80,6 @@ const SmartyTabs = (() => {
             const startIndex = 0;
             const tabSlide = true;
             const maxScreen = 650;
-            const container = '.smarty-tabs';
             const navWrapper = '.smarty-controller';
             const navList = `${navWrapper}__list`;
             const navItems = `${navWrapper}__item`;
@@ -83,7 +93,6 @@ const SmartyTabs = (() => {
                 startIndex    : this.config.startIndex || startIndex,
                 tabSlide      : this.config.tabSlide || tabSlide,
                 maxScreen     : this.config.maxScreen || maxScreen,
-                container     : this.initClass + (this.config.container || container),
                 navWrapper    : `${this.initClass}${( this.config.navWrapper || navWrapper )}`,
                 navList       : `${this.initClass} ${( this.config.navList || navList )}`,
                 navItems      : `${this.initClass} ${( this.config.navItems || navItems)}`,
@@ -141,16 +150,6 @@ const SmartyTabs = (() => {
         }
         
         /**
-         * check init class
-         *
-         * @returns {boolean}
-         * @private
-         */
-        _checkInit() {
-            return typeof(this.initClass) === 'string' && this.initClass !== undefined;
-        }
-        
-        /**
          * navigation positioning
          * set tab position on center
          *
@@ -168,17 +167,6 @@ const SmartyTabs = (() => {
                 list.style.transform = `translate(${ positionX }px)`;
             }
             
-        }
-        
-        /**
-         * verification of the conditions for positioning
-         *
-         * @returns {boolean}
-         * @private
-         */
-        _checkScreen() {
-            return (this._config().tabSlide && this._config().maxScreen <= window.innerWidth) ||
-                ($._el( this._config().navList ).offsetWidth > window.innerWidth && this._config().tabSlide)
         }
         
         /**
