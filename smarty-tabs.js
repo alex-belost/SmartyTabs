@@ -71,13 +71,13 @@ const SmartyTabs = (() => {
             const maxScreen = 650;
             const container = '.smarty-tabs';
             const navWrapper = '.smarty-controller';
-            const navList = '.smarty-controller__list';
-            const navItems = '.smarty-controller__item';
+            const navList = `${navWrapper}__list`;
+            const navItems = `${navWrapper}__item`;
             const contentWrapper = '.smarty-content';
-            const contentItems = '.smarty-content__item';
+            const contentItems = `${contentWrapper}__item`;
             const activeClass = {
-                nav    : 'smarty-controller__item--active',
-                content: 'smarty-content__item--active'
+                nav    : `${navWrapper}__item--active`.replace( /\./, '' ),
+                content: `${contentWrapper}__item--active`.replace( /\./, '' )
             };
             return {
                 startIndex    : this.config.startIndex || startIndex,
