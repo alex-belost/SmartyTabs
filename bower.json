@@ -1,5 +1,5 @@
 {
-	"name": "smarty-tabs","smarty-tabs",
+	"name": "smarty-tabs",
 	"description": "A simple plug-in for tabs written in ES6",
 	"main": "smarty-tabs.js",
 	"version": "0.1.3",
