@@ -1,24 +1,26 @@
 {
-  "name": "smarty-tabs",
-  "description": "A simple plug-in for tabs written in ES6",
-  "main": "smarty-tabs.js",
-  "version": "0.1.3",
-  "authors": [
-    "Alebex"
-  ],
-  "license": "ISC",
-  "keywords": [
-    "SmartyTabs",
-    "smarty-tabs",
-    "tabs",
-    "tabs-js"
-  ],
-  "homepage": "https://github.com/Alebex/SmartyTabs",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ]
+	"name": "smarty-tabs","smarty-tabs",
+	"description": "A simple plug-in for tabs written in ES6",
+	"main": "smarty-tabs.js",
+	"version": "0.1.3",
+	"authors": [
+		"Alebex"
+	],
+	"license": "ISC",
+	"keywords": [
+		"tabs",
+		"smarty",
+		"SmartyTabs",
+		"smartyTabs",
+		"smarty-tabs",
+		"tabs-js"
+	],
+	"homepage": "https://github.com/Alebex/SmartyTabs",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	]
 }
