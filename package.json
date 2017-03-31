@@ -1,6 +1,6 @@
 {
   "name": "smarty-tabs",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "A simple plug-in for tabs written in ES6",
   "main": "smarty-tabs.js",
   "scripts": {
