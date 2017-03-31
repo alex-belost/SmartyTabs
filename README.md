@@ -40,7 +40,7 @@ SmartyTabs
 
 Parameter                  | Type      | Default
 ---------------------------|-----------|--------------------------------------
-_**classes**_              |           |                
+_**Classes**_              |           |                
 navWrapper                 | string    | '.smarty-controller'
 navList                    | string    | '.smarty-controller__list'
 navItems                   | string    | '.smarty-controller__item'
@@ -48,10 +48,12 @@ contentWrapper             | string    | '.smarty-content'
 contentItems               | string    | '.smarty-content__item'
 activeClass.controller     | string    | 'smarty-controller__item--active'
 activeClass.content        | string    | 'smarty-content__item--active'
-_**response**_             |           |                          
-tabSlide                   | boolean   | false
+_**Response**_             |           |                          
+tabSlide                   | boolean   | true
 maxScreen                  | number    | 650            
-_**other**_                |           |                 
+_**Other**_                |           |                 
 startIndex                 | number    | 0
+_**Function**_             |           |
+change()                   |           |        
 
 `Author:` `Alebex`
