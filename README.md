@@ -54,6 +54,8 @@ maxScreen                  | number    | 650
 _**Other**_                |           |                 
 startIndex                 | number    | 0
 _**Function**_             |           |
-change()                   |           |        
+.change()                  |           |        
+.destroy()                 |           |        
+.init()                    |           |        
 
 `Author:` `Alebex`
