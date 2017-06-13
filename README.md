@@ -4,6 +4,13 @@ SmartyTabs
 
 ---------------------------------------------------------
 
+#### How to Use 
+```console
+    npm install --save smarty-tabs
+```
+
+---------------------------------------------------------
+
 #### HTML Layout
 ```html
     <!-- Set init class name -->
@@ -54,8 +61,8 @@ maxScreen                  | number    | 650
 _**Other**_                |           |                 
 startIndex                 | number    | 0
 _**Function**_             |           |
-.change()                  |           |        
-.destroy()                 |           |        
-.init()                    |           |        
+.change()                  | function  | obj.change((tabIndex, tabItem, contentItem) => {});      
+.destroy()                 | function  | obj.destroy();    
+.init()                    | function  | obj.init(); // need use after destroy    
 
 `Author:` `Alebex`
